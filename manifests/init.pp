@@ -136,15 +136,14 @@ class kafka (
 
   if $package_name == undef {
     include '::archive'
-
+    
     archive { "${package_dir}/${basefilename}":
       ensure          => present,
-      extract         => true,
-      extract_command => 'tar xfz %s --strip-components=1',
-      extract_path    => $install_directory,
+      provider        => 'tar_gz',
+      install_dir     => $install_directory,
+      link_name       => 'kafka'
       source          => $package_url,
       creates         => "${install_directory}/config",
-      cleanup         => true,
       user            => 'kafka',
       group           => 'kafka',
       require         => [
