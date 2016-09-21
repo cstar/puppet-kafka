@@ -143,15 +143,8 @@ class kafka (
       install_dir     => $install_directory,
       link_name       => 'kafka'
       source          => $package_url,
-      creates         => "${install_directory}/config",
-      user            => 'kafka',
+      owner           => 'kafka',
       group           => 'kafka',
-      require         => [
-        File[$package_dir],
-        File[$install_directory],
-        Group['kafka'],
-        User['kafka'],
-      ],
       before          => File['/opt/kafka/config'],
     }
   } else {
