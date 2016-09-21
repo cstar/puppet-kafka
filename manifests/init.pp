@@ -135,7 +135,7 @@ class kafka (
   }
 
   if $package_name == undef {
-    include '::archive'
+    #include '::archive'
     
     archive { "${package_dir}/${basefilename}":
       ensure          => present,
